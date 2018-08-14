@@ -24,8 +24,8 @@ define('DATABASE', [
     'Port'   => '3307',
     'Host'   => 'localhost',
     'Driver' => 'PDO',
-    'Name'   => '',
-    'User'   => '',
+    'Name'   => 'library',
+    'User'   => 'root',
     'Pass'   => '',
     'Prefix' => ''
 ]);
