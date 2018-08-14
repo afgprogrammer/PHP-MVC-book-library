@@ -49,7 +49,7 @@ final class PDO {
         $result = false;
 
         try {
-            if ($this->statement) {
+            if ($this->statement && $this->statement->execute()) {
                 $data = array();
 
                 while ($row = $this->statement->fetch(\PDO::FETCH_ASSOC)) {
