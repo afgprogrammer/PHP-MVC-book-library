@@ -13,3 +13,6 @@ function autoload($class) {
 
 // set autoload function
 spl_autoload_register('autoload');
+
+// load helper
+require_once SYSTEM . 'Helper/public.php';
