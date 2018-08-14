@@ -60,7 +60,7 @@ class Router {
      *  constaruct
      */
     public function __construct(string $url, string $method) {
-        $this->url = $url;
+        $this->url = rtrim($url, '/');
         $this->method = $method;
 
         // get response class of $GLOBALS var
