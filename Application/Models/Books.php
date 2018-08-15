@@ -103,7 +103,7 @@ class ModelsBooks extends Model {
         $total = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "authors WHERE fullname LIKE '%" . $this->db->escape($param['author']) . "%'");
         
         // pagination 
-        $this->pagination->total = (int) $total->row['total'];
+        $this->pagination->total = ($total->num_rows > 0) ? (int) $total->row['total'] : 0;
 
         // check valid page
         if (isset($param['page']) && is_numeric($param['page'])) {
@@ -148,7 +148,7 @@ class ModelsBooks extends Model {
         $total = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "books WHERE title LIKE '%" . $this->db->escape($param['title']) . "%'");
         
         // pagination 
-        $this->pagination->total = (int) $total->row['total'];
+        $this->pagination->total = ($total->num_rows > 0) ? (int) $total->row['total'] : 0;
 
         // check valid page
         if (isset($param['page']) && is_numeric($param['page'])) {
@@ -256,12 +256,12 @@ class ModelsBooks extends Model {
     private function getCountBooks() {
         $query = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "books");
 
-        return (int) $query->row['total'];
+        return ($query->num_rows > 0) ? (int) $query->row['total'] : 0;
     }
 
     private function getCountAuthors() {
         $query = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "authors");
 
-        return (int) $query->row['total'];
+        return ($query->num_rows > 0) ? (int) $query->row['total'] : 0;
     }
 }
