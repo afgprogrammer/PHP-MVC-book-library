@@ -32,8 +32,26 @@ define('DATABASE', [
 // DB_PREFIX
 define('DB_PREFIX', '');
 ```
-
 update with your database name, username, and password. you can choose a prefix. the prefix is optional.
+
+#### Example
+ my config.php file is this
+
+```PHP
+  // Config Database
+define('DATABASE', [
+    'Port'   => '3306',
+    'Host'   => 'localhost',
+    'Driver' => 'PDO',
+    'Name'   => 'library',
+    'User'   => 'root',
+    'Pass'   => '',
+    'Prefix' => 'l_'
+]);
+
+// DB_PREFIX
+define('DB_PREFIX', 'l_');
+```
 
 ### Step 3 - Installation 
 
