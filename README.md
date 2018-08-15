@@ -39,7 +39,7 @@ update with your database name, username and password. you can choose a prefix. 
 
 after your update config.php file. please open this path in your browser
 ```
-api.yourdomain.com/install 
+yourdomain.com/install 
 ```
 
 if you see this
