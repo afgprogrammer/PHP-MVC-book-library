@@ -17,20 +17,20 @@ class ControllersBooks  extends Controller {
         $this->response->setContent($data_list);
     }
 
-    public function books() {
+    public function books($param) {
 
         $model = $this->model('books');
-        $book_list = $model->getAllBooks();
+        $book_list = $model->getAllBooks($param);
 
         // Send Response
         $this->response->sendStatus(200);
         $this->response->setContent($book_list);
     }
 
-    public function authors() {
+    public function authors($param) {
 
         $model = $this->model('books');
-        $author_list = $model->getAllAuthors();
+        $author_list = $model->getAllAuthors($param);
 
         // Send Response
         $this->response->sendStatus(200);
@@ -43,7 +43,7 @@ class ControllersBooks  extends Controller {
         if (isset($param['author']) && $this->validSearchBooks($param['author'])) {
 
             $model = $this->model('books');
-            $result = $model->searchBooksByAuthors(clean($param['author']));
+            $result = $model->searchBooksByAuthors($param);
 
             // Send Response
             $this->response->sendStatus(200);
@@ -62,7 +62,7 @@ class ControllersBooks  extends Controller {
         if (isset($param['title']) && $this->validSearchBooks($param['title'])) {
 
             $model = $this->model('books');
-            $result = $model->searchBooksByTitle(clean($param['title']));
+            $result = $model->searchBooksByTitle($param);
 
             // Send Response
             $this->response->sendStatus(200);

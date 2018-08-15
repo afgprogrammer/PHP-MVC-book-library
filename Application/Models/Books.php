@@ -5,15 +5,38 @@ use MVC\Model;
 class ModelsBooks extends Model {
 
     public function getAllData() {
-        return $this->getAllBooks() + $this->getAllAuthors();
+        return [$this->getAllBooks(null), $this->getAllAuthors(null)];
     }
 
-    public function getAllBooks() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "books");
+    public function getAllBooks($param) {
+
+        // sql statement
+        $sql = "SELECT * FROM " . DB_PREFIX . "books";
+
+        // pagination 
+        $this->pagination->total = $this->getCountBooks();
+
+        // check valid page
+        if (isset($param['page']) && is_numeric($param['page'])) {
+            $this->pagination->page = (int) $param['page'];
+        } else {
+            $this->pagination->page = 1;
+        }
+
+        // render page data
+        $page_data = $this->pagination->render();  
+        $offset = ($this->pagination->page - 1) * $page_data['limit'];      
+
+        // read books with limit of page
+        $sql .= " ORDER BY id DESC LIMIT " . $offset . ", " . $page_data['limit'];
+
+        // exec query
+        $query = $this->db->query($sql);
 
         $data = [];
-        $data['count'] = $query->num_rows;
+        $data['page_data'] = $page_data;
 
+        // Conclusion
         if ($query->num_rows) {
             foreach($query->rows as $key => $value):
                 $data['books'][] = [
@@ -31,11 +54,30 @@ class ModelsBooks extends Model {
         return $data;
     }
 
-    public function getAllAuthors() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "authors");
+    public function getAllAuthors($param) {
+        $sql = "SELECT * FROM " . DB_PREFIX . "authors";
+
+        // pagination 
+        $this->pagination->total = $this->getCountAuthors();
+
+        // check valid page
+        if (isset($param['page']) && is_numeric($param['page'])) {
+            $this->pagination->page = (int) $param['page'];
+        } else {
+            $this->pagination->page = 1;
+        }
+
+        // render page data
+        $page_data = $this->pagination->render();  
+        $offset = ($this->pagination->page - 1) * $page_data['limit'];      
+
+        // read books with limit of page
+        $sql .= " ORDER BY id DESC LIMIT " . $offset . ", " . $page_data['limit'];
+
+        $query = $this->db->query($sql);
 
         $data = [];
-        $data['count'] = $query->num_rows;
+        $data['page_data'] = $page_data;
 
         if ($query->num_rows) {
             foreach($query->rows as $key => $value):
@@ -54,12 +96,33 @@ class ModelsBooks extends Model {
         return $data;
     }
 
-    public function searchBooksByAuthors($author_name) {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "authors WHERE fullname LIKE '%" . $this->db->escape($author_name) . "%'");
+    public function searchBooksByAuthors($param) {
+        $sql = "SELECT * FROM " . DB_PREFIX . "authors WHERE fullname LIKE '%" . $this->db->escape($param['author']) . "%'";
+
+        // total data find
+        $total = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "authors WHERE fullname LIKE '%" . $this->db->escape($param['author']) . "%'");
+        
+        // pagination 
+        $this->pagination->total = (int) $total->row['total'];
+
+        // check valid page
+        if (isset($param['page']) && is_numeric($param['page'])) {
+            $this->pagination->page = (int) $param['page'];
+        } else {
+            $this->pagination->page = 1;
+        }
+
+        // render page data
+        $page_data = $this->pagination->render();  
+        $offset = ($this->pagination->page - 1) * $page_data['limit'];      
+
+        // read books with limit of page
+        $sql .= " ORDER BY id DESC LIMIT " . $offset . ", " . $page_data['limit'];
+
+        $query = $this->db->query($sql);
 
         $data = [];
-
-        $data['count'] = $query->num_rows;
+        $data['page_data'] = $page_data;
 
         if ($query->num_rows) {
             foreach($query->rows as $key => $value):
@@ -78,12 +141,33 @@ class ModelsBooks extends Model {
         return $data;
     }
 
-    public function searchBooksByTitle($book_title) {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "books WHERE title LIKE '%" . $this->db->escape($book_title) . "%'");
+    public function searchBooksByTitle($param) {
+        $sql = "SELECT * FROM " . DB_PREFIX . "books WHERE title LIKE '%" . $this->db->escape($param['title']) . "%'";
+
+        // total data find
+        $total = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "books WHERE title LIKE '%" . $this->db->escape($param['title']) . "%'");
+        
+        // pagination 
+        $this->pagination->total = (int) $total->row['total'];
+
+        // check valid page
+        if (isset($param['page']) && is_numeric($param['page'])) {
+            $this->pagination->page = (int) $param['page'];
+        } else {
+            $this->pagination->page = 1;
+        }
+
+        // render page data
+        $page_data = $this->pagination->render();  
+        $offset = ($this->pagination->page - 1) * $page_data['limit'];      
+
+        // read books with limit of page
+        $sql .= " ORDER BY id DESC LIMIT " . $offset . ", " . $page_data['limit'];
+
+        $query = $this->db->query($sql);
 
         $data = [];
-
-        $data['count'] = $query->num_rows;
+        $data['page_data'] = $page_data;
 
         if ($query->num_rows) {
             foreach($query->rows as $key => $value):
@@ -167,5 +251,17 @@ class ModelsBooks extends Model {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "authors WHERE id = " . (int) $author_id . "");
 
         return $query->row;
+    }
+
+    private function getCountBooks() {
+        $query = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "books");
+
+        return (int) $query->row['total'];
+    }
+
+    private function getCountAuthors() {
+        $query = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "authors");
+
+        return (int) $query->row['total'];
     }
 }

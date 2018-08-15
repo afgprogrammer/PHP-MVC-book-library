@@ -8,13 +8,26 @@ $router->get('/', function() {
     </div>';
 });
 
-$router->get('/All', 'Books@index');
+// Get All Books And Authors
+$router->get('/all', 'Books@index');
 
+// books router
 $router->get('/books', 'Books@books');
+$router->get('/books/:page', 'Books@books');
 
+// search books
 $router->get('/books/title/:title', 'Books@searchBooksByTitle');
-$router->get('/books/isbn/:isbn', 'Books@searchBooksByISBN');
-$router->get('/books/author/:author', 'Books@searchBooksByAuthors');
+$router->get('/books/title/:title/:page', 'Books@searchBooksByTitle');
 
+$router->get('/books/isbn/:isbn', 'Books@searchBooksByISBN');
+
+$router->get('/books/author/:author', 'Books@searchBooksByAuthors');
+$router->get('/books/author/:author/:page', 'Books@searchBooksByAuthors');
+
+// authors router
 $router->get('/authors', 'Books@authors');
+$router->get('/authors/:page', 'Books@authors');
+
+// search author
 $router->get('/authors/:author', 'Books@searchBooksByAuthors');
+$router->get('/authors/:author/:page', 'Books@searchBooksByAuthors');
