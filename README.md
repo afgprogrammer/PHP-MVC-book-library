@@ -75,7 +75,6 @@ yourdomain.com/books/your-page-number
 yourdomain.com/authors/your-page-number
 
 yourdomain.com/books/title/your-book-title/your-page-number
-yourdomain.com/books/isbn/your-book-isbn/your-page-number
 yourdomain.com/books/author/your-book-author/your-page-number
 ```
 
