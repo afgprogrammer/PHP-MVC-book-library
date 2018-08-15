@@ -11,13 +11,16 @@ use Router\Router;
 $request = new Http\Request();
 $response = new Http\Response();
 
+// pagination
+$pagination = new Pagination\pagination();
+
 // set default header
 $response->setHeader('Access-Control-Allow-Origin: *');
 $response->setHeader("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 $response->setHeader('Content-Type: application/json; charset=UTF-8');
 
 // set request url and method
-$router = new Router('/' . $request->getUrl(), $request->getMethod());
+$router = new Router('/' . strtolower($request->getUrl()), $request->getMethod());
 
 // import router file
 require 'Router/Router.php';

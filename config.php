@@ -32,3 +32,6 @@ define('DATABASE', [
 
 // DB_PREFIX
 define('DB_PREFIX', '');
+
+//
+define('LIMIT_PRE_PAGE_SHOW_BOOKS', 5);
