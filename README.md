@@ -1,9 +1,9 @@
 
 <h2 align="center" >In The Name Of Allah</h2>
 
-# Rest Api For Books
+# Rest API For Books
 
-This project for search in books with rest api with php.
+This project for search in books with rest API with PHP.
 
 ## Setup
 
@@ -16,8 +16,8 @@ git clone https://github.com/afgprogrammer/php-books-library.git
 
 ### Step 2 - Change Config File
 
-please open config.php file and find this.
-```php
+please open the config.php file and find this.
+```PHP
   // Config Database
 define('DATABASE', [
     'Port'   => '3306',
@@ -33,7 +33,7 @@ define('DATABASE', [
 define('DB_PREFIX', '');
 ```
 
-update with your database name, username and password. you can choose a prefix. the prefix is optional.
+update with your database name, username, and password. you can choose a prefix. the prefix is optional.
 
 ### Step 3 - Installation 
 
@@ -44,13 +44,13 @@ yourdomain.com/install
 
 if you see this
 ```
-Your System Is Installed. Please remove sql file in ...
+Your System Is Installed. Please remove SQL file in ...
 ```
 Done.
 
 ## Usage
 
-you can see all books and authors with this url
+you can see all the books and authors with this URL
 ```
 yourdomain.com/all
 ```
@@ -63,13 +63,13 @@ for authors
 ```
 yourdomain.com/authors
 ```
-you can search books with title, isbn and author name
+you can search books with title, ISBN and author name
 ```
 yourdomain.com/books/title/your-book-title
 yourdomain.com/books/isbn/your-book-isbn
 yourdomain.com/books/author/your-book-author
 ```
-and you can see other page result
+and you can see other pages result
 ```
 yourdomain.com/books/your-page-number
 yourdomain.com/authors/your-page-number
@@ -79,4 +79,4 @@ yourdomain.com/books/isbn/your-book-isbn/your-page-number
 yourdomain.com/books/author/your-book-author/your-page-number
 ```
 
-and other ....
+and other...
