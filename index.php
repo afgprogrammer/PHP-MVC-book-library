@@ -22,6 +22,12 @@ $response->setHeader('Content-Type: application/json; charset=UTF-8');
 // set request url and method
 $router = new Router('/' . strtolower($request->getUrl()), $request->getMethod());
 
+// check install 
+$file = SCRIPT . 'SQL/library-sql.sql';
+if (file_exists($file) && strtolower($request->getUrl()) !== 'install') {
+    exit('Your System Not Installed please try with /install');
+}
+
 // import router file
 require 'Router/Router.php';
 

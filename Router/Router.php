@@ -11,6 +11,9 @@ $router->get('/', function() {
 // Get All Books And Authors
 $router->get('/all', 'Books@index');
 
+// install system
+$router->get('/install', 'System@index');
+
 // books router
 $router->get('/books', 'Books@books');
 $router->get('/books/:page', 'Books@books');

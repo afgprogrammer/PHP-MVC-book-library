@@ -21,11 +21,11 @@ define('MODELS', SCRIPT . 'Application/Models/');
 
 // Config Database
 define('DATABASE', [
-    'Port'   => '3307',
+    'Port'   => '3306',
     'Host'   => 'localhost',
     'Driver' => 'PDO',
-    'Name'   => 'library',
-    'User'   => 'root',
+    'Name'   => '',
+    'User'   => '',
     'Pass'   => '',
     'Prefix' => ''
 ]);
