@@ -3,7 +3,7 @@
 
 # Rest API For Books
 
-This project for search in books with rest API with PHP.
+This project is for searching books with rest API in PHP.
 
 ## Setup
 
@@ -16,7 +16,7 @@ git clone https://github.com/afgprogrammer/php-books-library.git
 
 ### Step 2 - Change Config File
 
-please open the config.php file and find this.
+Please open config.php file and find this code section.
 ```PHP
   // Config Database
 define('DATABASE', [
@@ -32,10 +32,10 @@ define('DATABASE', [
 // DB_PREFIX
 define('DB_PREFIX', '');
 ```
-update with your database name, username, and password. you can choose a prefix. the prefix is optional.
+update it with your database credentials. you can choose a prefix and the prefix is optional.
 
 #### Example
- my config.php file is this
+ My config.php file is like this
 
 ```PHP
   // Config Database
@@ -55,39 +55,39 @@ define('DB_PREFIX', 'l_');
 
 ### Step 3 - Installation 
 
-after your update config.php file. please open this path in your browser
+After your updated config.php file. please open this path in your browser.
 ```
 yourdomain.com/install 
 ```
 
-if you see this
+If you see bellow message:
 ```
 Your System Is Installed. Please remove SQL file in ...
 ```
-Done.
+It's Done.
 
 ## Usage
 
-you can see all the books and authors with this URL
+You can see all the books and authors with bellow URL
 ```
 yourdomain.com/all
 ```
-for books
+For getting all books
 ```
 yourdomain.com/books
 ```
 
-for authors
+For getting all authors
 ```
 yourdomain.com/authors
 ```
-you can search books with title, ISBN and author name
+You can search books with title, ISBN and author name
 ```
 yourdomain.com/books/title/your-book-title
 yourdomain.com/books/isbn/your-book-isbn
 yourdomain.com/books/author/your-book-author
 ```
-and you can see other pages result
+And you can see results in other pages
 ```
 yourdomain.com/books/your-page-number
 yourdomain.com/authors/your-page-number
@@ -96,4 +96,4 @@ yourdomain.com/books/title/your-book-title/your-page-number
 yourdomain.com/books/author/your-book-author/your-page-number
 ```
 
-and other...
+and ...
